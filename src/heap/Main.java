@@ -14,8 +14,10 @@ public class Main {
         binaryTree.insert(10);
         binaryTree.insert(6);
         binaryTree.insert(16);
-        //binaryTree.insert(4);
-        System.out.println("root : " +  binaryTree.root);
+        binaryTree.insert(4);
+        binaryTree.insert(17);
+        binaryTree.insert(5);
+        System.out.println("root : " +  binaryTree.root.printAll());
         System.out.println("preorder : " + binaryTree.preorderData());
         System.out.println("inorder : " + binaryTree.inorder());
         System.out.println("postorder : " + binaryTree.postorder());

@@ -5,6 +5,8 @@ public class Node {
     Node left;
     Node right;
 
+
+
     public Node(int data) {
         this.data = data;
     }
@@ -35,7 +37,14 @@ public class Node {
                 "data=" + data +
                 ", left=" + left +
                 ", right=" + right +
-                '}'
-                + System.lineSeparator();
+                '}';
+    }
+
+    public String printAll() {
+        return "Node{" +
+                "data=" + data +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

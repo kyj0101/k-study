@@ -1,81 +1,61 @@
 package heap;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // https://cdragon.tistory.com/19
+// https://www.geeksforgeeks.org/complete-binary-tree/
 public class BinaryTree {
 
     Node root;
 
+    Queue<Node> queue = new LinkedList<>();
+
     public BinaryTree(Node root) {
         this.root = root;
+        queue.add(root);
     }
 
-    public void insert(int data) {
-        List<Node> preorder = preorder();
-        if(preorder.size() > 2) {
-            Node node = preorder.get(preorder.size() - 2);
-            System.out.println(" -2 " + node);
-            System.out.println(" data " + data);
-        }
+    public boolean insert(int data) {
 
-        insertNode(this.root, null, data);
-    }
+        boolean complete = false;
+        Node parent = queue.peek();
+        Node child = new Node(data);
 
-    private boolean insertNode(Node node, Node parent, int data) {
-        System.out.println("Node :  " + node);
-        System.out.println("data : " + data);
-        if(node == null) {
-            return false;
-        }
+        while (!complete) {
 
-        if(node.getLeft() == null) {
-            node.setLeft(new Node(data));
-            return true;
-        }
+            if(parent == null) {
+                return false;
+            }
 
-        if(node.getRight() == null) {
-            node.setRight(new Node(data));
-            return true;
-        }
-
-
-        if(!insertNode(node.getLeft(), node, data)) {
-            insertNode(node.getRight(), node, data);
+            if(parent.getLeft() == null) {
+                parent.setLeft(child);
+                queue.add(child);
+                complete = true;
+            }else if(parent.getRight() == null) {
+                parent.setRight(child);
+                queue.add(child);
+                complete = true;
+            } else {
+                queue.remove();
+                parent = queue.peek();
+            }
         }
 
         return true;
     }
 
-    public List<Node> preorder() {
+    public List<Integer> preorderData() {
         return this.preorderTree(this.root, new ArrayList<>());
     }
 
-    private List<Node> preorderTree(Node node, List<Node> visited) {
-        if(node == null) {
-            return visited;
-        }
-
-        visited.add(node);
-        preorderTree(node.left, visited);
-        preorderTree(node.right, visited);
-
-        return visited;
-    }
-
-    public List<Integer> preorderData() {
-        return this.preorderTreeData(this.root, new ArrayList<>());
-    }
-
-    private List<Integer> preorderTreeData(Node node, List<Integer> visited) {
+    private List<Integer> preorderTree(Node node, List<Integer> visited) {
         if(node == null) {
             return visited;
         }
 
         visited.add(node.data);
-        preorderTreeData(node.left, visited);
-        preorderTreeData(node.right, visited);
+        preorderTree(node.left, visited);
+        preorderTree(node.right, visited);
 
         return visited;
     }
