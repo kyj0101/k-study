@@ -1,21 +1,29 @@
-package heap;
+package tree;
 
 import java.util.*;
 
 // https://cdragon.tistory.com/19
 // https://www.geeksforgeeks.org/complete-binary-tree/
-public class BinaryTree {
+public class CompleteBinaryTree {
 
     Node root;
 
     Queue<Node> queue = new LinkedList<>();
 
-    public BinaryTree(Node root) {
+    public CompleteBinaryTree(Node root) {
         this.root = root;
         queue.add(root);
     }
 
-    public boolean insert(int data) {
+    public Node getRoot() {
+        return root;
+    }
+
+    public Queue<Node> getQueue() {
+        return queue;
+    }
+
+    public Node insert(int data) {
 
         boolean complete = false;
         Node parent = queue.peek();
@@ -24,24 +32,26 @@ public class BinaryTree {
         while (!complete) {
 
             if(parent == null) {
-                return false;
+                return null;
             }
 
             if(parent.getLeft() == null) {
                 parent.setLeft(child);
                 queue.add(child);
                 complete = true;
+
             }else if(parent.getRight() == null) {
                 parent.setRight(child);
                 queue.add(child);
                 complete = true;
+
             } else {
                 queue.remove();
                 parent = queue.peek();
             }
         }
 
-        return true;
+        return child;
     }
 
     public List<Integer> preorderData() {
@@ -91,13 +101,12 @@ public class BinaryTree {
         return visited;
     }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "CompleteBinaryTree{" +
+                "root=" + root +
+                System.lineSeparator()
+                + ", queue=" + queue +
+                '}';
+    }
 }

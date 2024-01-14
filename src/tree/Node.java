@@ -1,11 +1,9 @@
-package heap;
+package tree;
 
 public class Node {
     int data;
     Node left;
     Node right;
-
-
 
     public Node(int data) {
         this.data = data;
@@ -23,6 +21,10 @@ public class Node {
         return right;
     }
 
+    public void setData(int data) {
+        this.data = data;
+    }
+
     public void setLeft(Node left) {
         this.left = left;
     }
@@ -33,14 +35,6 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "data=" + data +
-                ", left=" + left +
-                ", right=" + right +
-                '}';
-    }
-
-    public String printAll() {
         return "Node{" +
                 "data=" + data +
                 ", left=" + left +

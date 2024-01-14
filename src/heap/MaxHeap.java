@@ -1,28 +1,27 @@
 package heap;
 
 
-import java.util.ArrayList;
+import tree.CompleteBinaryTree;
+import tree.Node;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class MaxHeap implements Heap{
 
-    ArrayList<Node> dataList = new ArrayList<>();
+    CompleteBinaryTree tree;
 
-    public MaxHeap(Node node) {
-        dataList.add(node);
+    Queue<Node> nodes = new LinkedList<>();
+
+    public MaxHeap(Node root) {
+        tree = new CompleteBinaryTree(root);
     }
 
     @Override
     public boolean add(int data) {
-        Node node = dataList.get(dataList.size() - 1);
-        int parent = node.getData();
-        if(parent > data) {
-            if(node.getLeft() == null) {
-                node.setLeft(new Node(data));
-            }else {
-                node.setRight(new Node(data));
-            }
-        }
-
+        Node newNode = tree.insert(data);
+        nodes.add(newNode);
+        sort(newNode);
         return true;
     }
 
@@ -31,14 +30,26 @@ public class MaxHeap implements Heap{
         return false;
     }
 
-    public MaxHeap(ArrayList<Node> dataList) {
-        this.dataList = dataList;
+    @Override
+    public boolean sort(Node newNode) {
+        Queue<Node> queue = tree.getQueue();
+        Node parent = queue.peek();
+        if(parent == null) {
+            return false;
+        }
+        System.out.println("parent " + parent);
+        if(parent.getData() < newNode.getData()) {
+            int childData = newNode.getData();
+            newNode.setData(parent.getData());
+            parent.setData(childData);
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         return "MaxHeap{" +
-                "dataList=" + dataList +
+                "tree=" + tree +
                 '}';
     }
 }
