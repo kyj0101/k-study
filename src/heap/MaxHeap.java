@@ -26,10 +26,22 @@ public class MaxHeap implements Heap{
     }
 
     @Override
-    public int remove(int data) {
+    public int remove() {
         int rootData = tree.getRoot()
                         .getData();
 
+        LinkedList<Node> quLinkedList = (LinkedList) tree.getQueue();
+        Node last = quLinkedList.pollLast();
+        Node parent = last.getParent();
+
+        if(parent.getLeft() == last) {
+            parent.setLeft(null);
+        }else {
+            parent.setRight(null);
+        }
+
+        swap(tree.getRoot(), last);
+        System.out.println(last);
         return rootData;
     }
 
