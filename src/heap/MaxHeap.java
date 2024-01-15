@@ -4,6 +4,7 @@ package heap;
 import tree.CompleteBinaryTree;
 import tree.Node;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,8 +26,11 @@ public class MaxHeap implements Heap{
     }
 
     @Override
-    public boolean remove(int data) {
-        return false;
+    public int remove(int data) {
+        int rootData = tree.getRoot()
+                        .getData();
+
+        return rootData;
     }
 
     @Override

@@ -7,8 +7,7 @@ import java.util.ArrayList;
 public interface Heap {
 
     boolean add(int data);
-    boolean remove(int data);
-
+    int remove(int data);
     boolean sort(Node node);
 
 }
