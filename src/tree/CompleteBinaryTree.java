@@ -56,7 +56,7 @@ public class CompleteBinaryTree {
         return child;
     }
 
-    public List<Integer> preorderData() {
+    public List<Integer> preorder() {
         return this.preorderTree(this.root, new ArrayList<>());
     }
 
