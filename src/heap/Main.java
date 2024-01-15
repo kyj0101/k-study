@@ -8,8 +8,10 @@ public class Main {
         maxHeap.add(2);
         maxHeap.add(3);
         maxHeap.add(4);
-        ///maxHeap.add(7);
+        maxHeap.add(5);
+        maxHeap.add(0);
         System.out.println(maxHeap);
+        System.out.println(maxHeap.nodeList.toString());
 
 //        Node node = new Node(12);
 //        CompleteBinaryTree completeBinaryTree = new CompleteBinaryTree(node);

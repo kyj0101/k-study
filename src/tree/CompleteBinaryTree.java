@@ -37,11 +37,13 @@ public class CompleteBinaryTree {
 
             if(parent.getLeft() == null) {
                 parent.setLeft(child);
+                child.setParent(parent);
                 queue.add(child);
                 complete = true;
 
             }else if(parent.getRight() == null) {
                 parent.setRight(child);
+                child.setParent(parent);
                 queue.add(child);
                 complete = true;
 
@@ -105,8 +107,6 @@ public class CompleteBinaryTree {
     public String toString() {
         return "CompleteBinaryTree{" +
                 "root=" + root +
-                System.lineSeparator()
-                + ", queue=" + queue +
                 '}';
     }
 }
