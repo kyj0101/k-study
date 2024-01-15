@@ -13,18 +13,14 @@ public class MaxHeap implements Heap{
 
     CompleteBinaryTree tree;
 
-    List<Node> nodeList = new ArrayList<>();
-
     public MaxHeap(Node root) {
         tree = new CompleteBinaryTree(root);
-        nodeList.add(root);
     }
 
     @Override
     public boolean add(int data) {
         Node newNode = tree.insert(data);
         sort(newNode);
-        nodeList.add(newNode);
         return true;
     }
 
