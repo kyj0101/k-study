@@ -4,11 +4,7 @@ package heap;
 import tree.CompleteBinaryTree;
 import tree.Node;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 
 public class MaxHeap implements Heap{
 
@@ -21,7 +17,7 @@ public class MaxHeap implements Heap{
     @Override
     public boolean add(int data) {
         Node newNode = tree.insert(data);
-        sort(newNode);
+        sortBottom(newNode);
         return true;
     }
 
@@ -41,12 +37,53 @@ public class MaxHeap implements Heap{
         }
 
         swap(tree.getRoot(), last);
-        System.out.println(last);
+        sortTop(tree.getRoot());
+
         return rootData;
     }
 
     @Override
-    public boolean sort(Node child) {
+    public boolean sortTop(Node top) {
+
+        if(top == null) {
+            return false;
+        }
+
+        int parentData = top.getData();
+        Node child = top.getLeft();
+        Node left = top.getLeft();
+        Node right = top.getRight();
+
+        while (child != null) {
+
+            int childData = child.getData();
+
+            if(left != null && right != null) { // 왼쪽, 오른쪽 둘다 있으면 더 큰 값을 가져온다.
+
+                if(left.getData() > right.getData()) {
+                    childData = left.getData();
+                    child = left;
+                } else {
+                    childData = right.getData();
+                    child = right;
+                }
+            }
+
+            if(childData > parentData) {
+                swap(top, child);
+                top = child;
+                left = child.getLeft();
+                right = child.getRight();
+                child = left;
+            }else {
+                break;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean sortBottom(Node child) {
 
         Node parent = child.getParent();
 

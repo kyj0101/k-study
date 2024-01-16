@@ -15,6 +15,7 @@ public class Main {
         maxHeap.remove();
         System.out.println(maxHeap);
 
+
 //        Node node = new Node(12);
 //        CompleteBinaryTree completeBinaryTree = new CompleteBinaryTree(node);
 //        completeBinaryTree.insert(2);
