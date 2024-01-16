@@ -15,6 +15,19 @@ public class Main {
         maxHeap.remove();
         System.out.println(maxHeap);
 
+        MinHeap minHeap = new MinHeap(new Node(5));
+        minHeap.add(5);
+        minHeap.add(3);
+        minHeap.add(6);
+        minHeap.add(2);
+        minHeap.add(4);
+        minHeap.add(1);
+        System.out.println(minHeap);
+
+
+
+
+
 
 //        Node node = new Node(12);
 //        CompleteBinaryTree completeBinaryTree = new CompleteBinaryTree(node);
