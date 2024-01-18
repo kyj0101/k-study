@@ -57,9 +57,9 @@ public class MinHeap implements Heap{
 
             int childData = child.getData();
 
-            if(left != null && right != null) { // 왼쪽, 오른쪽 둘다 있으면 더 큰 값을 가져온다.
+            if(left != null && right != null) { // 왼쪽, 오른쪽 둘다 있으면 더 작은 값을 가져온다.
 
-                if(left.getData() > right.getData()) {
+                if(left.getData() < right.getData()) {
                     childData = left.getData();
                     child = left;
                 } else {
